@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Set page configuration
-st.set_page_config(page_title="H5216 Healthcare Stars Improvement Dashboard", layout="wide")
+st.set_page_config(page_title="H5216 Stars Improvement Dashboard", layout="wide")
 
 # 1. Load in Data for H5216 Members
 @st.cache_data
@@ -29,8 +29,8 @@ member_data_h5216 = load_member_data()
 measure_data_h5216 = load_measure_data()
 
 # 3. Define the constants
-BASE_REVENUE = 1341920160
-BASE_STARS = 4.07#4.07142857142857
+BASE_REVENUE = 1_341_920_160
+BASE_STARS = 4.07  # Original base stars rating
 BASE_WEIGHT_SUM = 69
 NON_CHANGEABLE_MEASURES_SCORE = 295
 REVENUE_INCREASE_RATE = 0.075  # 0.075% revenue increase per 0.01 increase in stars
@@ -40,7 +40,7 @@ treatment_effects = {
     'veteran_ind': 0.1012,               # 10.12%
     'unattributed_provider': 0.0786,     # 7.86%
     'disabled_ind': 0.0756,              # 7.56%
-    'is_healthy': 0.2056                   # 10% (assumed effect)
+    'is_healthy': 0.2056                 # 20.56%
 }
 
 # 5. Define which users are influenced by which tactics
@@ -53,35 +53,28 @@ tactics = {
 
 # 6. Tactic costs
 tactics_costs = {
-    'Incentivized PCP Sign Up': 1215120,
-    'Provider Incentive Programs': 2256695,
-    'Provider Opportunity Reports': 3000000,
-    'Telehealth Incentive Program for First PCP Visit': 927810,
-    'Accessibility - Transportation': 3723475,
-    'Accessibility - Homecare Program': 912000,
-    'Veteran Education Initiatives': 343900,
+    'Incentivized PCP Sign Up': 1_215_120,
+    'Provider Incentive Programs': 2_256_695,
+    'Provider Opportunity Reports': 3_000_000,
+    'Telehealth Incentive Program for First PCP Visit': 927_810,
+    'Accessibility - Transportation': 3_723_475,
+    'Accessibility - Homecare Program': 912_000,
+    'Veteran Education Initiatives': 343_900,
 }
 
 # Sidebar for tactic selection
 st.sidebar.title("Select Tactics")
 available_tactics = list(tactics_costs.keys())
 
-# Display tactics with their costs
+# Display tactics with their costs and checkboxes
 st.sidebar.markdown("### Available Tactics and Costs")
+chosen_tactics = []
+
 for tactic in available_tactics:
     cost = tactics_costs[tactic]
-    st.sidebar.write(f"- **{tactic}**: ${cost:,.2f}")
-
-# Tactic selection
-chosen_tactics = st.sidebar.multiselect(
-    "Choose Tactics to Implement:",
-    options=available_tactics,
-    default=available_tactics
-)
-
-# Display the ATEs (if needed in the future)
-# st.sidebar.title("Average Treatment Effects (ATEs)")
-# st.sidebar.write(pd.DataFrame.from_dict(treatment_effects, orient='index', columns=['ATE']))
+    selected = st.sidebar.checkbox(f"{tactic}: ${cost:,.2f}", value=False)
+    if selected:
+        chosen_tactics.append(tactic)
 
 # 7. Log the costs for the chosen tactics
 Costs = sum([tactics_costs[tactic] for tactic in chosen_tactics])
@@ -206,30 +199,29 @@ else:
 ROI = ((revenue_impact - Costs) / Costs) * 100 if Costs != 0 else 0.0
 
 # Main dashboard
-st.title("H5216 Healthcare Stars Improvement Dashboard")
+st.markdown("<h1 style='text-align: center;'>H5216 Stars Improvement Dashboard</h1>", unsafe_allow_html=True)
 
 # Display the highlighted metrics at the top
 st.markdown("<h2 style='text-align: center;'>Key Performance Indicators</h2>", unsafe_allow_html=True)
 
 # Display the highlighted metrics
-col1, col2, col3, col4,col5 = st.columns(5)
+col1, col2, col3, col4 = st.columns(4)
 col1.metric("New Stars Rating", f"{new_stars_rating}")
 col2.metric("Expected Revenue Uplift", f"${revenue_impact:,.2f}")
 col3.metric("Total Costs", f"${Costs:,.2f}")
 col4.metric("ROI", f"{ROI:.2f}%")
-col5.metric("Stars Increase", f"{stars_increase:.10f}")
 
 # Display the measure data
 st.header("Measure Performance")
 st.dataframe(measure_data_h5216[['measure', 'Score', 'New Score', 'New Star Rating', 'Weight']])
 
 # Optional: Display tactic costs whether or not they are chosen
-st.header("Tactic Costs")
-tactics_df = pd.DataFrame.from_dict(tactics_costs, orient='index', columns=['Cost'])
-tactics_df.reset_index(inplace=True)
-tactics_df.rename(columns={'index': 'Tactic'}, inplace=True)
-tactics_df['Chosen'] = tactics_df['Tactic'].apply(lambda x: 'Yes' if x in chosen_tactics else 'No')
-st.dataframe(tactics_df[['Tactic', 'Cost', 'Chosen']])
+#st.header("Tactic Costs")
+#tactics_df = pd.DataFrame.from_dict(tactics_costs, orient='index', columns=['Cost'])
+#tactics_df.reset_index(inplace=True)
+#tactics_df.rename(columns={'index': 'Tactic'}, inplace=True)
+#tactics_df['Chosen'] = tactics_df['Tactic'].apply(lambda x: 'Yes' if x in chosen_tactics else 'No')
+#st.dataframe(tactics_df[['Tactic', 'Cost', 'Chosen']])
 
 # Footer
 st.markdown("---")
