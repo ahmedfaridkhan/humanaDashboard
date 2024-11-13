@@ -1,0 +1,20 @@
+﻿Contract,Measure,Score,Measure Star,Weight,5 Star Cut Point,4 Star Cut Point,3 Star Cut Point,2 Star Cut Point,1 Star Cut Point
+H5216,C01: Breast Cancer Screening,73%,4,1,79%,71%,63%,48%,< 48 %
+H5216,C02: Colorectal Cancer Screening,77%,4,1,80%,71%,60%,48%,< 48 %
+H5216,C03: Annual Flu Vaccine,69%,3,1,78%,74%,67%,63%,< 63%
+H5216,C04: Monitoring Physical Activity,47%,2,1,58%,53%,48%,42%,< 42 %
+H5216,C05: Special Needs Plan (SNP) Care Management,79%,4,1,85%,74%,57%,42%,< 42 %
+H5216,C06: Care for Older Adults - Medication Review,96%,4,1,98%,87%,75%,48%,< 48 %
+H5216,C07: Care for Older Adults - Pain Assessment,97%,5,1,96%,90%,76%,55%,< 55 %
+H5216,C08: Osteoporosis Management in Women who had a Fracture,36%,2,1,68%,50%,40%,28%,< 28 %
+H5216,C09: Diabetes Care - Eye Exam,74%,4,1,81%,73%,65%,52%,< 52 %
+H5216,C10: Diabetes Care - Blood Sugar Controlled,86%,4,3,87%,80%,67%,44%,< 44 %
+H5216,C11: Controlling High Blood Pressure,79%,4,3,82%,74%,68%,58%,< 58 %
+H5216,C12: Reducing the Risk of Falling,53%,3,1,70%,60%,53%,47%,< 47 %
+H5216,C13: Improving Bladder Control,41%,2,1,51%,47%,42%,38%,< 38 %
+H5216,C14: Medication Reconciliation Post-Discharge,84%,5,1,82%,68%,52%,38%,< 38 %
+H5216,C16: Statin Therapy for Patients with Cardiovascular Disease,84%,3,1,90%,86%,84%,79%,< 79 %
+H5216,D08: Medication Adherence for Diabetes Medications,86%,3,3,90%,88%,84%,80%,< 80 %
+H5216,D09: Medication Adherence for Hypertension (RAS antagonists),89%,4,3,91%,89%,86%,82%,< 82 %
+H5216,D10: Medication Adherence for Cholesterol (Statins),88%,4,3,91%,88%,86%,82%,< 82 %
+H5216,D12: Statin Use in Persons with Diabetes (SUPD),84%,2,1,92%,88%,86%,81%,< 81 %
