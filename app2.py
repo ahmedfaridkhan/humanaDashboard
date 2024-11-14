@@ -48,7 +48,7 @@ tactics = {
     'unattributed_provider': {'Incentivized PCP Sign Up', 'Provider Incentive Programs', 'Provider Opportunity Reports'},
     'is_healthy': {'Telehealth Incentive Program for First PCP Visit', 'Provider Incentive Programs', 'Provider Opportunity Reports'},
     'disabled_ind': {'Accessibility - Transportation', 'Accessibility - Homecare Program'},
-    'veteran_ind': {'Veteran Education Initiatives'}
+    'veteran_ind': {'Veteran Education Initiatives', 'Veteran Community Days'},  # Added new tactic
 }
 
 # 6. Tactic costs
@@ -60,6 +60,7 @@ tactics_costs = {
     'Accessibility - Transportation': 3_723_475,
     'Accessibility - Homecare Program': 912_000,
     'Veteran Education Initiatives': 343_900,
+    'Veteran Community Days': 480_000,  # Added new tactic
 }
 
 # Sidebar for tactic selection
